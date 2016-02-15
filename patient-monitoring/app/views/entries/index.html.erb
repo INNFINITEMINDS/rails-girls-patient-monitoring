@@ -1,0 +1,40 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Case management system</a>
+    </div>
+    <div class="navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <%=link_to("Create a new entry", new_entry_path) %>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+<h1>Entries</h1>
+<ul>
+  <% Entry.all.each do |e| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p> <%= e.title %> </p></h3>
+      </div>
+      <div class="panel-body">
+        <p> <%= "Created at: " + e.entry_date.to_s %> </p>
+		<p> <%= "Entry type: " + e.entry_type %> </p>
+		<p> <%= "Content: " + e.content %> </p>
+      </div>
+      <div class="panel-footer">
+        <span class="label label-default"><%= "Created by: " + e.user_id.to_s %></span>
+      </div>
+    </div>
+  <% end %>
+</ul>
+</div>
