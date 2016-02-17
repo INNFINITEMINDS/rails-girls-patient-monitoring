@@ -1,0 +1,27 @@
+<div class="container">
+<h3>Users Search</h3>
+<ul>
+  <%= form_for users_path, method: :get do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= f.label "Search for" %>
+        <%= text_field_tag :q, params[:q] %>
+        <%= submit_tag "Go", email: nil %>
+          </div>
+    </div>
+  <% end %>
+</ul>
+</div>
+
+<div class="container">
+<h3>Users</h3>
+<ul>
+  <% @users.each do |user| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= link_to user.email, controller: "users", action: "show", id: user.id%>
+          </div>
+    </div>
+  <% end %>
+</ul>
+</div>

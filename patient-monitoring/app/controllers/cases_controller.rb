@@ -36,4 +36,8 @@ class CasesController < ApplicationController
 	        render 'edit'
 	    end
 	end
+
+	def show
+		@case = Case.find(params[:id])
+	end
 end

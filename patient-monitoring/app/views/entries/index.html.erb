@@ -6,7 +6,7 @@
     <div class="navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <%=link_to("Create a new entry", new_entry_path) %>
+          
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -21,18 +21,19 @@
 <div class="container">
 <h1>Entries</h1>
 <ul>
-  <% Entry.all.each do |e| %>
+  <% @entries.each do |e| %>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title"><p> <%= e.title %> </p></h3>
       </div>
       <div class="panel-body">
-        <p> <%= "Created at: " + e.entry_date.to_s %> </p>
-		<p> <%= "Entry type: " + e.entry_type %> </p>
-		<p> <%= "Content: " + e.content %> </p>
-      </div>
+        <p> <%= "Created at: " + e.entry_date.to_formatted_s(:short) %> </p>
+    		<p> <%= "Entry type: " + e.entry_type %> </p>
+    		<p> <%= "Content: " + e.content %> </p>
+        <p> <%= "Case: " + Case.find(e.case_id).title %> </p>
+          </div>
       <div class="panel-footer">
-        <span class="label label-default"><%= "Created by: " + e.user_id.to_s %></span>
+        <span class="label label-default"><%= "Created by: " + User.find(e.user_id).email %></span>
       </div>
     </div>
   <% end %>

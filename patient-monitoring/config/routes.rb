@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
+  root :to => 'cases#index'
+  get 'search', to: 'search#search'
+  resources :users
   devise_for :users
-  resources :cases
-  resources :entries
+  resources :searches
+  resources :cases do
+    resources :entries
+  end
+  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

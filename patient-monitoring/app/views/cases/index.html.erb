@@ -28,15 +28,15 @@
       </div>
       <div class="panel-body">
         <p> <%= "Created at: " + c.date.to_s %> </p>
-		<p> <%= "Symptoms: " + c.simptoms %> </p>
-		<p> <%= "Status: " + c.status %> </p>
-      </div>
+    		<p> <%= "Symptoms: " + c.simptoms %> </p>
+    		<p> <%= "Status: " + c.status %> </p>
+          </div>
       <div class="panel-footer">
         <span class="label label-default"><%= "Created by: " + c.user.email %></span>
         <% if current_user == c.user %>
-		  <%= link_to("Edit", edit_case_path(c), class: 'btn btn-default btn-xs pull-right') %>
-		  <%=link_to("Delete", case_path(c), method: :delete, class: 'btn btn-danger btn-xs pull-right') %>
-		<% end %>
+    		  <%= link_to("Edit", edit_case_path(c), class: 'btn btn-default btn-xs pull-right') %>
+    		  <%=link_to("Delete", case_path(c), method: :delete, class: 'btn btn-danger btn-xs pull-right') %>
+    		<% end %>
       </div>
     </div>
   <% end %>

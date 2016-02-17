@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+
+gem 'searchkick'
+
 gem 'bootstrap_form'
 
 gem 'bootstrap-sass'

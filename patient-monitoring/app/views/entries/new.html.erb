@@ -3,5 +3,6 @@
 <%= form.text_field :title, :placeholder => "Entry title" %>
 <%= form.text_field :entry_type, :placeholder => "Entry type" %>
 <%= form.text_field :content, :placeholder => "Content" %>
+<%= form.collection_select :case_id, Case.order(:date), :id,  :title, include_blank: false %>
 <%= form.submit %>
 <% end %>
