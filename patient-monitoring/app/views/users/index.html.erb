@@ -1,19 +1,43 @@
-<h1>Users Search</h1>
+<div class="container">
+  <div class="grid_4">
+    <section class="box widget locations">
+      <div class="avatar">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/6035/scrtpxls_location.png"  />
+      </div>
+      <div class="details">
+        <h2>De Westerkerk</h2>
+        <p>Prinsengracht 281</p>
+        <a href="#" class="btn btn-primary btn-block btn-large">view on maps</a>
+      </div>
+    </section>
+    </div>
+  </div>
+</div>
 
-<%= form_for users_path, method: :get do |f| %>
-  <p>
-    <%= f.label "Search for" %>
-    <%= text_field_tag :q, params[:q] %>
-    <%= submit_tag "Go", email: nil %>
-  </p>
-<% end %>
-
+<div class="container">
+<h3>Users Search</h3>
 <ul>
-  <% @users.each do |user| %>
-    <li>
-      <h3>
-        <%= link_to user.email, controller: "users", action: "show", id: user.id%>
-      </h3>
-    </li>
+  <%= form_for users_path, method: :get do |f| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= f.label "Search for" %>
+        <%= text_field_tag :q, params[:q] %>
+        <%= submit_tag "Go", email: nil %>
+          </div>
+    </div>
   <% end %>
 </ul>
+</div>
+
+<div class="container">
+<h3>Users</h3>
+<ul>
+  <% @users.each do |user| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= link_to user.email, controller: "users", action: "show", id: user.id%>
+          </div>
+    </div>
+  <% end %>
+</ul>
+</div>
