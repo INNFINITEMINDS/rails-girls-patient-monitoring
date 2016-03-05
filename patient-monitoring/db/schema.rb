@@ -11,34 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160215171924) do
+ActiveRecord::Schema.define(version: 20160220092542) do
 
   create_table "cases", force: :cascade do |t|
+    t.integer  "doctor_id"
+    t.integer  "patient_id"
     t.string   "title"
-    t.integer  "user_id"
-    t.datetime "date"
-    t.string   "simptoms"
+    t.text     "simptoms"
     t.string   "status"
-    t.datetime "last_seen_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "entries", force: :cascade do |t|
-    t.string   "title"
-    t.integer  "case_id"
-    t.integer  "user_id"
-    t.datetime "entry_date"
-    t.string   "entry_type"
-    t.string   "content"
-  end
-
-  create_table "searches", force: :cascade do |t|
-    t.string   "keyword"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-  end
-
-  create_table "users", force: :cascade do |t|
+  create_table "doctors", force: :cascade do |t|
+    t.string   "name"
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
@@ -51,13 +37,37 @@ ActiveRecord::Schema.define(version: 20160215171924) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "type"
-    t.datetime "birthday"
-    t.string   "height"
-    t.string   "weight"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "doctors", ["email"], name: "index_doctors_on_email", unique: true
+  add_index "doctors", ["reset_password_token"], name: "index_doctors_on_reset_password_token", unique: true
+
+  create_table "entries", force: :cascade do |t|
+    t.integer  "case_id"
+    t.integer  "doctor_id"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.string   "name"
+    t.date     "birth_date"
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "patients", ["email"], name: "index_patients_on_email", unique: true
+  add_index "patients", ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
 
 end

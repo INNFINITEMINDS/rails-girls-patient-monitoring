@@ -1,0 +1,46 @@
+<div class="container">
+<h1>Cases</h1>
+<ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p> <%= @case.title %> </p></h3>
+      </div>
+      <div class="panel-body">
+        <p> <%= "Symptoms: " + @case.simptoms %> </p>
+        <p> <%= "Status: " + @case.status %> </p>
+          </div>
+      <div class="panel-footer">
+        <span class="label label-default"><%= "Created by: " + @case.doctor.email  %></span>
+        <% if current_doctor == @case.doctor %>
+          <%= link_to("Edit", edit_case_path(@case), class: 'btn btn-default btn-xs pull-right') %>
+          <%=link_to("Delete", case_path(@case), method: :delete, class: 'btn btn-danger btn-xs pull-right') %>
+        <% end %>
+      </div>
+    </div>
+</ul>
+</div>
+
+<div class="container">
+<h1>Entries</h1>
+<ul>
+  <% @case.entries.each do |e| %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <p> <%= "Created at: " + e.created_at.to_formatted_s(:short) %> </p>
+    		<p> <%= "Content: " + e.content %> </p>
+      </div>
+      <div class="panel-footer">
+        <span class="label label-default"><%= "Created by: " + Doctor.find(e.doctor_id).email %></span>
+      </div>
+    </div>
+  <% end %>
+  <h1> New Entry</h1>
+  <%= form_for @new_entry, url: case_entries_path(@case) do |form| %>
+  <%= form.text_field :content, :placeholder => "Content" %>
+  <%= form.submit %>
+  <% end %>
+</ul>
+</div>
+
+
+

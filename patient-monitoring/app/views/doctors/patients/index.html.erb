@@ -1,0 +1,12 @@
+<div class="container">
+	<h3>Patients</h3>
+	<ul>
+	  <% @patients.order(id: :desc).each do |patient| %>
+	    <div class="panel panel-default">
+	      <div class="panel-body">
+	        <%= link_to patient.email, patient %>
+	      </div>
+	    </div>
+	  <% end %>
+	</ul>
+</div>

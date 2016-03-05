@@ -1,11 +1,34 @@
 Rails.application.routes.draw do
-  root :to => 'cases#index'
-  get 'search', to: 'search#search'
-  resources :users
-  devise_for :users
-  resources :searches
-  resources :cases do
-    resources :entries
+  devise_for :patients
+  devise_for :doctors
+  get "landing" => "pages#landing"
+  
+  authenticated :doctor do
+    scope module: "doctors" do
+      root :to => 'dashboards#index', as: "authenticated_doctor"
+      resources :cases, except: [:new, :create] do
+        
+        resources :entries
+      end
+      get :my_cases, to: "cases#my_cases"
+
+      resources :patients do
+        resources :cases, only: [:new, :create]
+      end
+    end
+  end
+
+  authenticated :patient do 
+    scope module: "patients" do
+      root :to => 'cases#index', as: "authenticated_patient"
+      resources :cases do
+        resources :entries, only: [:index, :show]
+      end
+    end
+  end
+
+  unauthenticated do
+    root :to => 'pages#landing'    
   end
   
 
