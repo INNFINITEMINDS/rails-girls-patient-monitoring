@@ -1,28 +1,18 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+####To be installed on your machine:
+1. Use the following tutorial to install ruby(>=2.2.3), rails
+2. Install git and clone the project on your machine.
+```$
+sudo apt-get install git
+git clone https://github.com/dianaartiom/rails-girls-patient-monitoring.git
+```
+3. Enter the pat-monitoring app
+```
+cd rails-girls-patient-monitoring/patient-monitoring
+```
+and run 
+```$
+bundle install
+rake db:migrate
+rails server
+```
+4. Go in browser and open localhost:3000. Have fun. =)
