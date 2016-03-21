@@ -7,5 +7,6 @@ class Doctor < ActiveRecord::Base
   has_many :cases
   has_many :patients, through: :cases
   has_many :entries
+  has_many :appointments
   # has_many :contributed_cases, through: :entries, class_name: Case
 end

@@ -1,0 +1,19 @@
+
+
+<div class="container">
+<h1>Appointments</h1>
+
+  <% @appointments.each do |c| %>
+  <div class="panel-heading">
+        <h3 class="panel-title"><p> <%=  link_to c.doctor_id, c %> </p></h3>
+      </div>
+    <%= "test" %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+    		<p> <%= "Symptoms: " + c.doctor_id.to_s %> </p>
+    		<p> <%= "Status: " + c.patient_id.to_s %> </p>
+      </div>
+    </div>
+  <% end %>
+
+</div>

@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'state_machine'
+
 gem 'bootstrap_form'
 
 gem 'bootstrap-sass'

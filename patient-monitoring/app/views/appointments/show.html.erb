@@ -1,0 +1,20 @@
+<div class="container">
+<h1>single appointment</h1>
+<ul>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><p> <%= @appointment.doctor_id.to_s %> </p></h3>
+      </div>
+      <div class="panel-body">
+        <p> <%= "Symptoms: " + @appointment.doctor_id.to_s %> </p>
+        <p> <%= "Status: " + @appointment.patient_id.to_s %> </p>
+          </div>
+      <div class="panel-footer">
+        <% if current_doctor == @appointment.doctor %>
+          <%= link_to("Edit", edit_appointment_path(@appointment), class: 'btn btn-default btn-xs pull-right') %>
+          <%=link_to("Delete", appointment_path(@appointment), method: :delete, class: 'btn btn-danger btn-xs pull-right') %>
+        <% end %>
+      </div>
+    </div>
+</ul>
+</div>

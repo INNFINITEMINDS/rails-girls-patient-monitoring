@@ -5,6 +5,7 @@ class Patient < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :cases
+  has_many :appointments
 
   def self.search(search)
 	  where("email LIKE ?", "%#{search}%")

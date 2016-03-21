@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :patients
   devise_for :doctors
   get "landing" => "pages#landing"
+  resources :appointments
   
   authenticated :doctor do
     scope module: "doctors" do

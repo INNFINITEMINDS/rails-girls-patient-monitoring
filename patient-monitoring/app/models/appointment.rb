@@ -1,46 +1,13 @@
-class CasesController < ApplicationController
-	# before_filter :authenticate_user!
-	def index
-	end
+class Appointment < ActiveRecord::Base
+	belongs_to :doctor
+	belongs_to :patient
 
-	def new
-		@case=Case.new
-	end
+	# attr_accessible :appointment_time, :patient_id, :doctor_id
 
-	def create
-		@case=Case.create(case_params)
-		@case.user = current_user
-		@case.save
-		redirect_to cases_path
-	end
+	# validates_datetime :appointment_time, on: :create, on_or_after: :today
 
-	def case_params
-		params.require(:case).permit!
-	end
-
-	def destroy
-		@case = Case.find(params[:id])
-		@case.destroy
-		redirect_to cases_path
-	end
-
-	def edit  
-	    @case = Case.find(params[:id])
-	end
-
-	def update  
-	    @case = Case.find(params[:id])
-	    if @case.update_attributes(case_params)
-	        redirect_to cases_path
-	    else
-	        render 'edit'
-	    end
-	end
-
-	def show
-		@case = Case.find(params[:id])
-	end
-end
+	 #----------------
+  # using the state_machine gem here to control the approval, rescheduling,
 	#confirming or cancelling appointments
 	States = {
 		pending_doctor_approval: 0,
@@ -89,7 +56,10 @@ end
 		retval
 	end
 
-	scope :not_cancelled, where('state != ?', Appointment::States[:canceled])
-	scope :future, where("appointment_time > ?", Time.now)
-	scope :for_doctor, lambda { |doctor_id| joins(:doctor).where('doctors_id = ?', doctor_id) }
-	scope :for_patient, lambda { |patient_id| joins(:patient).where('patient_id = ?', patient_id) }
+	# scope :not_cancelled, where('state != ?', Appointment::States[:canceled])
+	# scope :future, where("appointment_time > ?", Time.now)
+	# scope :for_doctor, lambda { |doctor_id| joins(:doctor).where('doctors_id = ?', doctor_id) }
+	# scope :for_patient, lambda { |patient_id| joins(:patient).where('patient_id = ?', patient_id) }
+
+	
+end
